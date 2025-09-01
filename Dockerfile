@@ -1,7 +1,6 @@
 FROM mcr.microsoft.com/dotnet/sdk:9.0 as BUILD
 
 COPY MareAPI /server/MareAPI
-COPY MareSynchronosServer/MareSynchronosShared /server/MareSynchronosServer/MareSynchronosShared
 COPY MareSynchronosServer /server/MareSynchronosServer
 
 WORKDIR /server/MareSynchronosServer
@@ -10,26 +9,32 @@ RUN dotnet publish \
         --configuration=Debug \
         --os=linux \
         --output=/build \
-        /server/MareSynchronosServer/MareSynchronosAuthService.csproj
+        /server/MareSynchronosServer/MareSynchronosAuthService/MareSynchronosAuthService.csproj
 
 RUN dotnet publish \
         --configuration=Debug \
         --os=linux \
         --output=/build \
-        /server/MareSynchronosServer/MareSynchronosServer.csproj
+        /server/MareSynchronosServer/MareSynchronosServer/MareSynchronosServer.csproj
 
 RUN dotnet publish \
         --configuration=Debug \
         --os=linux \
         --output=/build \
-        /server/MareSynchronosServer/MareSynchronosServices.csproj
+        /server/MareSynchronosServer/MareSynchronosServices/MareSynchronosServices.csproj
 
 RUN dotnet publish \
         --configuration=Debug \
         --os=linux \
         --output=/build \
-        /server/MareSynchronosServer/MareSynchronosS.csproj
+        /server/MareSynchronosServer/MareSynchronosStaticFilesServer/MareSynchronosStaticFilesServer.csproj
 
+RUN dotnet publish \
+        --configuration=Debug \
+        --os=linux \
+        --output=/build \
+        /server/MareSynchronosServer/MareSynchronosShared/MareSynchronosShared.csproj
+            
 # FROM mcr.microsoft.com/dotnet/aspnet:9.0
 
 # RUN adduser \
