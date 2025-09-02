@@ -16,7 +16,7 @@ RUN set -eux; \
         dotnet publish \
             --configuration Debug \
             --os linux \
-            --output "/build/${out}" \
+            --output "/build/${out}/" \
             "$proj"; \
     done <<'EOF'
 MareSynchronosAuthService|/server/MareSynchronosServer/MareSynchronosAuthService/MareSynchronosAuthService.csproj
