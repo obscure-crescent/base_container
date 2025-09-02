@@ -32,5 +32,5 @@ RUN adduser --disabled-password --group --no-create-home --quiet --system mare \
     && apt-get install -y --no-install-recommends curl \
     && rm -rf /var/lib/apt/lists/*
 USER mare:mare
-COPY --from=build /build/* /opt/
+COPY --from=build /build/ /opt/
 # CMD ["./MareSynchronosAuthService"]
